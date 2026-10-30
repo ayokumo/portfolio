@@ -1,10 +1,12 @@
 // ==========================================================================
 // Ayokunmi Lawal — Portfolio Scripts
-// Vibe: Swiss Minimal Interactions (Digit Counters, Slide Reveal, Nav Spy)
+// Fusion: Running Folio Navigation + Swiss Minimal Digit Counters & Reveals
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Signature: Build rolling counter digit strips for section numbers
+  // ------------------------------------------------------------------------
+  // 1. Section Numbers: Rolling counter digit strips
+  // ------------------------------------------------------------------------
   document.querySelectorAll('.sec-num').forEach((num) => {
     const text = num.textContent.trim();
     num.textContent = '';
@@ -30,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 2. Scroll: Column-step reveals
+  // ------------------------------------------------------------------------
+  // 2. Scroll Reveals: Column-step arrival
+  // ------------------------------------------------------------------------
   const sections = [...document.querySelectorAll('main .section')];
   const atBottom = () => window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
 
@@ -67,79 +71,103 @@ document.addEventListener('DOMContentLoaded', () => {
     if (section) reveal(section);
   });
 
-  // 3. Navigation: Red indicator underline & Section Spying
-  const links = [...document.querySelectorAll('.site-header a[href^="#"]')];
-  const spied = [...document.querySelectorAll('main > section[id]')];
-  let pinned = null;
-  let queued = false;
+  // ------------------------------------------------------------------------
+  // 3. Editorial Running Folio Navigation
+  // ------------------------------------------------------------------------
+  const allSections = [...document.querySelectorAll('main section[id]')];
+  const navLinks = [...document.querySelectorAll('.folio-nav a')];
+  const folioNow = document.querySelector('.folio-now');
+  let currentId = allSections.length ? allSections[0].id : '';
+  let lockedId = '';
+  let lockSeen = false;
+  let ticking = false;
 
   function setCurrent(id) {
-    links.forEach((a) => {
-      if (a.hash === '#' + id) {
-        a.setAttribute('aria-current', 'location');
+    currentId = id;
+    let label = '';
+    navLinks.forEach((link) => {
+      if (link.hash === '#' + id) {
+        link.setAttribute('aria-current', 'location');
+        label = link.textContent.trim();
       } else {
-        a.removeAttribute('aria-current');
+        link.removeAttribute('aria-current');
       }
+    });
+
+    if (folioNow && label) {
+      const nextSpan = document.createElement('span');
+      nextSpan.textContent = label;
+      folioNow.replaceChildren(nextSpan);
+    }
+  }
+
+  function spy() {
+    if (!allSections.length) return;
+    const probe = window.innerHeight * 0.35;
+    const rects = allSections.map((s) => s.getBoundingClientRect());
+    let id = allSections[0].id;
+
+    rects.forEach((rect, i) => {
+      if (rect.top <= probe) id = allSections[i].id;
+    });
+
+    if (window.scrollY < 8) {
+      id = allSections[0].id;
+    } else if (atBottom()) {
+      id = allSections[allSections.length - 1].id;
+      sections.forEach(reveal);
+    }
+
+    const lockIndex = allSections.findIndex((s) => s.id === lockedId);
+    if (lockIndex >= 0) {
+      const r = rects[lockIndex];
+      const onScreen = r.bottom > 0 && r.top < window.innerHeight;
+      if (onScreen) lockSeen = true;
+      if (onScreen || !lockSeen) id = lockedId;
+      else lockedId = '';
+    }
+
+    if (id !== currentId) setCurrent(id);
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      spy();
     });
   }
 
-  function pin(id) {
+  function lockTo(hash) {
+    const id = hash.replace('#', '');
+    if (!allSections.some((s) => s.id === id)) return;
+    lockedId = id;
+    lockSeen = false;
     const target = document.getElementById(id);
-    if (!target) return;
-    pinned = id;
-    if (target.classList.contains('will-reveal')) {
+    if (target && target.classList.contains('will-reveal')) {
       reveal(target);
     }
     setCurrent(id);
   }
 
-  function update() {
-    const line = window.innerHeight * 0.35;
-    const rects = spied.map((s) => s.getBoundingClientRect());
-    let current = spied[0];
-
-    rects.forEach((r, i) => {
-      if (r.top <= line) current = spied[i];
-    });
-
-    if (atBottom()) {
-      current = spied[spied.length - 1];
-      sections.forEach(reveal);
-    }
-
-    if (pinned) {
-      const i = spied.findIndex((s) => s.id === pinned);
-      if (i > -1 && rects[i].bottom > 0 && rects[i].top < window.innerHeight) {
-        current = spied[i];
-      } else {
-        pinned = null;
-      }
-    }
-
-    if (current) setCurrent(current.id);
+  function unlock() {
+    lockedId = '';
+    onScroll();
   }
 
-  const unpin = () => {
-    pinned = null;
-  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('hashchange', () => lockTo(location.hash));
+  navLinks.forEach((link) => link.addEventListener('click', () => lockTo(link.hash)));
 
-  ['wheel', 'touchmove'].forEach((name) => window.addEventListener(name, unpin, { passive: true }));
-  window.addEventListener('keydown', (e) => {
-    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) {
-      unpin();
+  ['wheel', 'touchmove'].forEach((type) => window.addEventListener(type, unlock, { passive: true }));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+      unlock();
     }
   });
 
-  links.forEach((a) => a.addEventListener('click', () => pin(a.hash.slice(1))));
-  window.addEventListener('hashchange', () => pin(location.hash.slice(1)));
-  window.addEventListener('scroll', () => {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(() => {
-      queued = false;
-      update();
-    });
-  }, { passive: true });
-
-  update();
+  if (location.hash) lockTo(location.hash);
+  spy();
 });

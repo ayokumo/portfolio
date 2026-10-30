@@ -1,6 +1,6 @@
 /* ==========================================================================
    Ayokunmi Lawal — Personal Portfolio Stylesheet
-   Vibe: Swiss Minimal (Zurich International Typographic Style)
+   Fusion: Editorial Masthead Banner + Swiss Minimal Content Grid
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -8,14 +8,17 @@
    -------------------------------------------------------------------------- */
 :root {
   --color-bg: #FFFFFF;
-  --color-surface: #EEEEEE;   /* hero column bands */
-  --color-text: #111111;      /* 18.9:1 on bg */
-  --color-muted: #575757;     /* 7.2:1 on bg */
-  --color-accent: #D10019;    /* Signal Red: 5.6:1 on bg */
-  --color-rule: #B0B0B0;      /* Hairlines only */
-  --font: "Schibsted Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-surface: #F4F4F4;
+  --color-text: #111111;
+  --color-muted: #575757;
+  --color-accent: #D10019;    /* Signal Red accent */
+  --color-rule: #C9C9C4;      /* Hairlines */
 
-  /* Spacing Scale */
+  /* Typography */
+  --font-display: "Bodoni Moda", "Didot", Georgia, serif;
+  --font-body: "Schibsted Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Spacing Scale (Rules require using spacing variables strictly) */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -31,14 +34,16 @@
   --body-cols: 4;
   --gutter: var(--space-4);
   --margin: var(--space-4);
-  --header-h: 0px;
+  --folio-h: 5.25rem;         /* running folio height on mobile */
   --step: calc((100cqw + var(--gutter)) / var(--cols));
 
   /* Motion variables */
-  --ease-grid: cubic-bezier(0.3, 0, 0.1, 1);
+  --ease-press: cubic-bezier(0.39, 0.575, 0.565, 1); /* gentle editorial deceleration */
+  --ease-grid: cubic-bezier(0.3, 0, 0.1, 1);          /* firm Swiss grid slide */
   --move: 520ms;
   --beat: 80ms;
   --tick: 110ms;
+  --mask-pad: 0.2em;
 }
 
 @media (min-width: 48rem) {
@@ -47,7 +52,7 @@
     --body-cols: 8;
     --gutter: var(--space-5);
     --margin: var(--space-5);
-    --header-h: 3.75rem;
+    --folio-h: 3.75rem;        /* running folio height on desktop */
   }
 }
 
@@ -69,7 +74,7 @@ body {
   overflow-x: clip;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font);
+  font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.55;
   text-align: left;
@@ -104,7 +109,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-text);
+  outline: 3px solid var(--color-accent);
   outline-offset: 3px;
 }
 
@@ -115,145 +120,179 @@ a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Header & Navigation
+   Editorial Running Folio Navigation Bar
    -------------------------------------------------------------------------- */
-.site-header {
-  border-bottom: 1px solid var(--color-text);
-  background-color: var(--color-bg);
-}
-
-.header-row {
+.folio {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: grid;
-  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
-  column-gap: var(--gutter);
-  padding-block: var(--space-2);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--space-4);
+  padding: 0 max(var(--space-4), calc((100% - 75rem) / 2));
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-text);
 }
 
-.brand {
-  grid-column: 1 / -1;
-  justify-self: start;
+.folio-name {
+  min-height: 2.75rem;
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: italic;
   color: var(--color-text);
-  font-weight: 800;
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
-.brand:hover {
+.folio-name:hover {
   color: var(--color-accent);
   text-decoration: none;
 }
 
-.site-nav {
+.folio-now {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-style: italic;
+  text-align: right;
+  color: var(--color-accent);
+}
+
+.folio-now span {
+  display: inline-block;
+  animation: ink-in 700ms var(--ease-press) both;
+}
+
+.folio-nav {
   grid-column: 1 / -1;
 }
 
-.site-nav ul {
+.folio-nav ul {
   display: flex;
   flex-wrap: wrap;
-  margin-inline-start: -0.5rem;
+  justify-content: space-between;
 }
 
-.site-nav a {
-  position: relative;
-  display: inline-flex;
+.folio-nav a {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  min-width: 44px;
   min-height: 44px;
   padding-inline: var(--space-2);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   color: var(--color-text);
-  font-size: 0.9375rem;
-  font-weight: 500;
   text-decoration: none;
+  background: linear-gradient(var(--color-accent), var(--color-accent)) 0 calc(50% + 0.85em) / 0% 2px no-repeat,
+              linear-gradient(var(--color-rule), var(--color-rule)) 0 calc(50% + 0.85em) / 0% 1px no-repeat;
+  transition: background-size 600ms var(--ease-press), color 200ms ease;
 }
 
-.site-nav a:hover {
+.folio-nav a[aria-current],
+.folio-nav a:focus-visible {
+  background-size: 100% 2px, 0% 1px;
   color: var(--color-accent);
 }
 
-.site-nav a::after {
-  content: "";
-  position: absolute;
-  left: var(--space-2);
-  right: var(--space-2);
-  bottom: 6px;
-  height: 3px;
-  background-color: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 360ms var(--ease-grid);
-}
-
-.site-nav a[aria-current]::after {
-  transform: scaleX(1);
+@media (hover: hover) {
+  .folio-nav a:hover {
+    background-size: 100% 2px, 0% 1px;
+    color: var(--color-accent);
+  }
 }
 
 @media (min-width: 48rem) {
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    min-height: var(--header-h);
+  .folio {
+    grid-template-columns: auto 1fr auto;
+    min-height: var(--folio-h);
   }
 
-  .header-row {
-    align-items: center;
-    padding-block: 0;
-    min-height: calc(var(--header-h) - 1px);
+  .folio-name {
+    min-height: var(--folio-h);
   }
 
-  .brand {
-    grid-column: 1 / span 4;
+  .folio-now {
+    text-align: center;
   }
 
-  .site-nav {
-    grid-column: 5 / -1;
+  .folio-nav {
+    grid-column: auto;
+  }
+
+  .folio-nav ul {
+    gap: var(--space-3);
   }
 }
 
 /* --------------------------------------------------------------------------
-   Hero Section
+   Editorial Top Banner (Hero)
    -------------------------------------------------------------------------- */
 .hero {
   display: grid;
   grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
   column-gap: var(--gutter);
-  align-content: end;
-  row-gap: var(--space-5);
-  min-height: min(78svh, 40rem);
-  padding-block: var(--space-6);
-  background: linear-gradient(to right, var(--color-surface) calc(100% - var(--gutter)), transparent 0) 0 0 / var(--step) 100% repeat-x;
+  align-content: start;
+  row-gap: var(--space-4);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-7);
 }
 
-.hero-bar {
-  display: block;
-  grid-column: 1;
-  height: 0.75rem;
-  background-color: var(--color-accent);
+.masthead-rule {
+  grid-column: 1 / -1;
+  height: 7px;
+  margin-bottom: var(--space-5);
+  border-top: 4px solid var(--color-text);
+  border-bottom: 1px solid var(--color-text);
   transform-origin: left;
-  animation: draw-bar var(--move) var(--ease-grid) both;
+  animation: rule-draw 1200ms var(--ease-press) 100ms both;
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding: var(--mask-pad) 0.06em;
+  margin: calc(var(--mask-pad) * -1) -0.06em;
+}
+
+.line-in {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .hero-name {
   grid-column: 1 / -1;
-  font-size: clamp(2.75rem, 13vw, 9rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  overflow-wrap: anywhere;
-  animation: slide-col var(--move) var(--ease-grid) var(--beat) both;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 14vw, 8.5rem);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  font-style: normal;
+}
+
+.hero-name .line:nth-child(1) .line-in {
+  animation: typeset 1000ms var(--ease-press) 150ms both;
+}
+
+.hero-name .line:nth-child(2) .line-in {
+  animation: typeset 1000ms var(--ease-press) 320ms both;
 }
 
 .hero-intro {
   grid-column: 1 / -1;
-  max-width: 28ch;
-  font-size: clamp(1.25rem, 2.6vw, 1.875rem);
-  font-weight: 500;
-  line-height: 1.25;
-  animation: slide-col var(--move) var(--ease-grid) calc(var(--beat) * 2) both;
+  max-width: 34ch;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--color-muted);
+  animation: ink-in 900ms var(--ease-press) 500ms both;
 }
 
 @media (min-width: 48rem) {
@@ -263,11 +302,12 @@ a:hover {
 
   .hero-intro {
     grid-column: 5 / span 7;
+    margin-top: 0;
   }
 }
 
 /* --------------------------------------------------------------------------
-   Sections
+   Swiss Minimal Sections
    -------------------------------------------------------------------------- */
 .section {
   display: grid;
@@ -280,7 +320,7 @@ a:hover {
 
 .hero[id],
 .section[id] {
-  scroll-margin-top: var(--header-h);
+  scroll-margin-top: var(--folio-h);
 }
 
 .sec-num {
@@ -498,16 +538,37 @@ a:hover {
 /* --------------------------------------------------------------------------
    Keyframes & Scroll Reveals
    -------------------------------------------------------------------------- */
+@keyframes typeset {
+  from {
+    transform: translateY(calc(100% + var(--mask-pad) * 2));
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes ink-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes slide-col {
   from {
     opacity: 0;
     transform: translateX(calc(var(--step) * -1));
-  }
-}
-
-@keyframes draw-bar {
-  from {
-    transform: scaleX(0);
   }
 }
 
@@ -542,9 +603,9 @@ a:hover {
     transition: none !important;
   }
 
-  .hero-bar,
-  .hero-name,
-  .hero-intro {
+  .masthead-rule,
+  .hero-intro,
+  .hero-name .line-in {
     animation: none;
     transform: none;
     opacity: 1;
