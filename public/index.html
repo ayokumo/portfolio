@@ -7,17 +7,14 @@
   <meta name="description" content="Data science student at York University and campus equipment assistant at Tait McKenzie Gym.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Fira+Code:wght@400;500&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Schibsted+Grotesk:wght@400;500;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Editorial Running Folio Header with Git HEAD marker -->
+  <!-- Editorial Running Folio Header -->
   <header class="folio">
-    <div class="folio-left">
-      <a class="folio-name" href="#home">Ayokunmi Lawal</a>
-      <span class="head-badge" aria-hidden="true"><span class="head-tag">HEAD</span></span>
-    </div>
+    <a class="folio-name" href="#home">Ayokunmi Lawal</a>
     <p class="folio-now" aria-hidden="true"><span>Home</span></p>
     <nav class="folio-nav" aria-label="Sections">
       <ul>
@@ -28,202 +25,94 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <p class="key-hint" aria-hidden="true"><kbd>j</kbd> <kbd>k</kbd></p>
   </header>
 
-  <main class="graph">
-    <!-- Section 1: Hero (First commit on the Git line) -->
-    <section class="commit lane-main is-first" id="home" aria-labelledby="home-title">
-      <div class="rail" aria-hidden="true">
-        <svg class="piece from-dot" viewBox="0 0 60 100" preserveAspectRatio="none">
-          <path class="track" d="M10 -1V101"/>
-          <path class="draw" d="M10 -1V101" pathLength="1"/>
-        </svg>
-        <span class="dot"></span>
-      </div>
+  <main class="page">
+    <!-- Editorial Masthead Top Banner -->
+    <section class="hero" id="home" aria-labelledby="home-title">
       <div class="masthead-rule" aria-hidden="true"></div>
-      <h1 id="home-title" class="hero-name commit-title">
+      <h1 id="home-title" class="hero-name">
         <span class="line"><span class="line-in">Ayokunmi</span></span>
         <span class="line"><span class="line-in">Lawal</span></span>
       </h1>
       <p class="hero-intro">Studying data science at York University and campus equipment assistant at Tait McKenzie Gym, integrating technology for sports equipment maintenance.</p>
     </section>
 
-    <!-- Section 2: About (Commit on the main branch) -->
-    <section class="commit lane-main" id="about" aria-labelledby="about-title">
-      <div class="rail" aria-hidden="true">
-        <svg class="piece" viewBox="0 0 60 100" preserveAspectRatio="none">
-          <path class="track" d="M10 -1V101"/>
-          <path class="draw" d="M10 -1V101" pathLength="1"/>
-        </svg>
-        <span class="dot"></span>
-      </div>
-      <h2 id="about-title" class="commit-title">About</h2>
-      <div class="commit-body">
+    <!-- Swiss Minimal Content Sections -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <p class="sec-num" aria-hidden="true">01</p>
+      <h2 id="about-title" class="sec-title">About</h2>
+      <div class="sec-body">
         <p>I am studying data science and work as a student on campus at York University with Tait McKenzie Gym as an equipment assistant, integrating technology for the maintenance of jerseys and sporting equipment @ YorkU in Vaughan.</p>
         <p>I built this portfolio for recruiters and employers to explore the things I have built, showing both the practical systems and my readiness to discuss them in depth.</p>
       </div>
     </section>
 
-    <!-- Section 3: Projects (Branches off main line and merges back) -->
-    <section class="commit lane-main" id="projects" aria-labelledby="projects-title">
-      <div class="rail" aria-hidden="true">
-        <svg class="piece" viewBox="0 0 60 100" preserveAspectRatio="none">
-          <path class="track" d="M10 -1V101"/>
-          <path class="draw" d="M10 -1V101" pathLength="1"/>
-        </svg>
-        <span class="dot"></span>
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <p class="sec-num" aria-hidden="true">02</p>
+      <h2 id="projects-title" class="sec-title">Projects</h2>
+      <div class="sec-body">
+        <ul class="project-list">
+          <li class="project-row">
+            <h3 class="project-title">Football Player Undervaluation Model with RAG Scouting Assistant</h3>
+            <p class="project-desc">Built an end-to-end football analytics and machine learning system that identifies potentially undervalued players moving between European leagues. Uses Python, PyTorch, scikit-learn and PostgreSQL to predict player development, alongside a retrieval-augmented generation (RAG) assistant that allows scouts to query player statistics and scouting reports with cited sources. Achieved 90% accuracy on a held-out assistant evaluation.</p>
+            <a class="project-link" href="https://github.com/ayokumo/player_undervaluation_model" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </li>
+          <li class="project-row">
+            <h3 class="project-title">Premier League Match Prediction Pipeline</h3>
+            <p class="project-desc">Developed an automated machine learning pipeline that collects and processes football data, engineers team performance features using PySpark, and predicts upcoming Premier League match outcomes. Uses historical seasons for model training and evaluation, with GitHub Actions automating daily updates, scheduled predictions and weekly model retraining. Publishes predictions through a live dashboard.</p>
+            <a class="project-link" href="https://github.com/ayokumo/pl-predictor" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </li>
+          <li class="project-row">
+            <h3 class="project-title">Toronto Housing and Shelter Forecasting Pipeline</h3>
+            <p class="project-desc">Built an end-to-end data engineering and forecasting project combining public Toronto shelter occupancy data with Bank of Canada interest rate data. Developed a 433,000-row data warehouse using dbt and DuckDB, implemented automated data quality tests, and applied statistical modelling and time-series forecasting to investigate relationships between interest rates and shelter demand.</p>
+            <a class="project-link" href="https://github.com/ayokumo/toronto-housing-project" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </li>
+        </ul>
       </div>
-      <h2 id="projects-title" class="commit-title">Projects</h2>
-
-      <!-- Project 1 (lane-1 branch) -->
-      <article class="branch lane-1" aria-labelledby="p1-title">
-        <div class="rail" aria-hidden="true">
-          <svg class="piece fork" viewBox="0 0 60 40" preserveAspectRatio="none">
-            <path class="track" d="M10 0C10 20 30 20 30 40"/>
-            <path class="draw" d="M10 0C10 20 30 20 30 40" pathLength="1"/>
-          </svg>
-          <svg class="piece run" viewBox="0 0 60 100" preserveAspectRatio="none">
-            <path class="track" d="M30 -1V101"/>
-            <path class="draw" d="M30 -1V101" pathLength="1"/>
-          </svg>
-          <svg class="piece merge" viewBox="0 0 60 40" preserveAspectRatio="none">
-            <path class="track" d="M30 0C30 20 10 20 10 40"/>
-            <path class="draw" d="M30 0C30 20 10 20 10 40" pathLength="1"/>
-          </svg>
-          <span class="dot dot-branch"></span>
-          <span class="dot dot-merge"></span>
-        </div>
-        <div class="project-card">
-          <h3 id="p1-title" class="project-heading">
-            Football Player Undervaluation Model with RAG Scouting Assistant
-            <span class="branch-pill" aria-hidden="true">player-undervaluation</span>
-          </h3>
-          <p class="project-desc">Built an end-to-end football analytics and machine learning system that identifies potentially undervalued players moving between European leagues. Uses Python, PyTorch, scikit-learn and PostgreSQL to predict player development, alongside a retrieval-augmented generation (RAG) assistant that allows scouts to query player statistics and scouting reports with cited sources. Achieved 90% accuracy on a held-out assistant evaluation.</p>
-          <div class="project-action">
-            <a class="project-link" href="https://github.com/ayokumo/player_undervaluation_model" target="_blank" rel="noopener noreferrer">View on GitHub &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 2 (lane-2 branch) -->
-      <article class="branch lane-2" aria-labelledby="p2-title">
-        <div class="rail" aria-hidden="true">
-          <svg class="piece fork" viewBox="0 0 60 40" preserveAspectRatio="none">
-            <path class="track" d="M10 0C10 20 50 20 50 40"/>
-            <path class="draw" d="M10 0C10 20 50 20 50 40" pathLength="1"/>
-          </svg>
-          <svg class="piece run" viewBox="0 0 60 100" preserveAspectRatio="none">
-            <path class="track" d="M50 -1V101"/>
-            <path class="draw" d="M50 -1V101" pathLength="1"/>
-          </svg>
-          <svg class="piece merge" viewBox="0 0 60 40" preserveAspectRatio="none">
-            <path class="track" d="M50 0C50 20 10 20 10 40"/>
-            <path class="draw" d="M50 0C50 20 10 20 10 40" pathLength="1"/>
-          </svg>
-          <span class="dot dot-branch"></span>
-          <span class="dot dot-merge"></span>
-        </div>
-        <div class="project-card">
-          <h3 id="p2-title" class="project-heading">
-            Premier League Match Prediction Pipeline
-            <span class="branch-pill" aria-hidden="true">pl-predictor</span>
-          </h3>
-          <p class="project-desc">Developed an automated machine learning pipeline that collects and processes football data, engineers team performance features using PySpark, and predicts upcoming Premier League match outcomes. Uses historical seasons for model training and evaluation, with GitHub Actions automating daily updates, scheduled predictions and weekly model retraining. Publishes predictions through a live dashboard.</p>
-          <div class="project-action">
-            <a class="project-link" href="https://github.com/ayokumo/pl-predictor" target="_blank" rel="noopener noreferrer">View on GitHub &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 3 (lane-1 branch) -->
-      <article class="branch lane-1" aria-labelledby="p3-title">
-        <div class="rail" aria-hidden="true">
-          <svg class="piece fork" viewBox="0 0 60 40" preserveAspectRatio="none">
-            <path class="track" d="M10 0C10 20 30 20 30 40"/>
-            <path class="draw" d="M10 0C10 20 30 20 30 40" pathLength="1"/>
-          </svg>
-          <svg class="piece run" viewBox="0 0 60 100" preserveAspectRatio="none">
-            <path class="track" d="M30 -1V101"/>
-            <path class="draw" d="M30 -1V101" pathLength="1"/>
-          </svg>
-          <svg class="piece merge" viewBox="0 0 60 40" preserveAspectRatio="none">
-            <path class="track" d="M30 0C30 20 10 20 10 40"/>
-            <path class="draw" d="M30 0C30 20 10 20 10 40" pathLength="1"/>
-          </svg>
-          <span class="dot dot-branch"></span>
-          <span class="dot dot-merge"></span>
-        </div>
-        <div class="project-card">
-          <h3 id="p3-title" class="project-heading">
-            Toronto Housing and Shelter Forecasting Pipeline
-            <span class="branch-pill" aria-hidden="true">toronto-housing</span>
-          </h3>
-          <p class="project-desc">Built an end-to-end data engineering and forecasting project combining public Toronto shelter occupancy data with Bank of Canada interest rate data. Developed a 433,000-row data warehouse using dbt and DuckDB, implemented automated data quality tests, and applied statistical modelling and time-series forecasting to investigate relationships between interest rates and shelter demand.</p>
-          <div class="project-action">
-            <a class="project-link" href="https://github.com/ayokumo/toronto-housing-project" target="_blank" rel="noopener noreferrer">View on GitHub &rarr;</a>
-          </div>
-        </div>
-      </article>
     </section>
 
-    <!-- Section 4: Skills (Commit on the main branch) -->
-    <section class="commit lane-main" id="skills" aria-labelledby="skills-title">
-      <div class="rail" aria-hidden="true">
-        <svg class="piece" viewBox="0 0 60 100" preserveAspectRatio="none">
-          <path class="track" d="M10 -1V101"/>
-          <path class="draw" d="M10 -1V101" pathLength="1"/>
-        </svg>
-        <span class="dot"></span>
-      </div>
-      <h2 id="skills-title" class="commit-title">Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3 class="skill-card-title">Programming Languages</h3>
-          <p class="skill-items">Python, SQL, R</p>
-        </div>
-        <div class="skill-card">
-          <h3 class="skill-card-title">Machine Learning &amp; Data Science</h3>
-          <p class="skill-items">PyTorch, scikit-learn, pandas, NumPy, feature engineering, model evaluation, cross-validation, predictive modelling, statistical analysis, time-series forecasting</p>
-        </div>
-        <div class="skill-card">
-          <h3 class="skill-card-title">Generative AI &amp; LLMs</h3>
-          <p class="skill-items">LangChain, LangGraph, Retrieval-Augmented Generation (RAG), prompt engineering, LLM evaluation, computer vision</p>
-        </div>
-        <div class="skill-card">
-          <h3 class="skill-card-title">Data Engineering</h3>
-          <p class="skill-items">PySpark, dbt Core, DuckDB, PostgreSQL, data pipelines, data warehousing, automated data quality testing</p>
-        </div>
-        <div class="skill-card">
-          <h3 class="skill-card-title">Cloud &amp; Development Tools</h3>
-          <p class="skill-items">AWS, Docker, Git, GitHub Actions, workflow automation</p>
-        </div>
-        <div class="skill-card">
-          <h3 class="skill-card-title">Analytics &amp; Visualization</h3>
-          <p class="skill-items">Power BI, interactive dashboards, geospatial analysis, GeoPandas, PySAL</p>
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <p class="sec-num" aria-hidden="true">03</p>
+      <h2 id="skills-title" class="sec-title">Skills</h2>
+      <div class="sec-body">
+        <div class="skills-categories">
+          <div class="skill-group">
+            <h3 class="skill-group-title">Programming Languages</h3>
+            <p class="skill-items">Python, SQL, R</p>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Machine Learning &amp; Data Science</h3>
+            <p class="skill-items">PyTorch, scikit-learn, pandas, NumPy, feature engineering, model evaluation, cross-validation, predictive modelling, statistical analysis, time-series forecasting</p>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Generative AI &amp; LLMs</h3>
+            <p class="skill-items">LangChain, LangGraph, Retrieval-Augmented Generation (RAG), prompt engineering, LLM evaluation, computer vision</p>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Data Engineering</h3>
+            <p class="skill-items">PySpark, dbt Core, DuckDB, PostgreSQL, data pipelines, data warehousing, automated data quality testing</p>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Cloud &amp; Development Tools</h3>
+            <p class="skill-items">AWS, Docker, Git, GitHub Actions, workflow automation</p>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Analytics &amp; Visualization</h3>
+            <p class="skill-items">Power BI, interactive dashboards, geospatial analysis, GeoPandas, PySAL</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 5: Contact (Final commit on the main branch) -->
-    <section class="commit lane-main" id="contact" aria-labelledby="contact-title">
-      <div class="rail" aria-hidden="true">
-        <svg class="piece to-dot" viewBox="0 0 60 100" preserveAspectRatio="none">
-          <path class="track" d="M10 -1V101"/>
-          <path class="draw" d="M10 -1V101" pathLength="1"/>
-        </svg>
-        <span class="dot"></span>
-      </div>
-      <h2 id="contact-title" class="commit-title">Contact</h2>
-      <div class="contact-links">
-        <a class="contact-card" href="https://github.com/ayokumo" target="_blank" rel="noopener noreferrer">
-          <span class="contact-label">GitHub</span>
-          <span class="contact-val">github.com/ayokumo &rarr;</span>
-        </a>
-        <a class="contact-card" href="https://www.linkedin.com/in/ayokunmi-lawal-6b9a14290" target="_blank" rel="noopener noreferrer">
-          <span class="contact-label">LinkedIn</span>
-          <span class="contact-val">ayokunmi-lawal &rarr;</span>
-        </a>
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <p class="sec-num" aria-hidden="true">04</p>
+      <h2 id="contact-title" class="sec-title">Contact</h2>
+      <div class="sec-body">
+        <ul class="contact-list">
+          <li><a href="https://github.com/ayokumo" target="_blank" rel="noopener noreferrer">GitHub (ayokumo)</a></li>
+          <li><a href="https://www.linkedin.com/in/ayokunmi-lawal-6b9a14290" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
       </div>
     </section>
   </main>
