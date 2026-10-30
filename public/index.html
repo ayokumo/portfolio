@@ -4,175 +4,111 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ayokunmi Lawal — Data Science Portfolio</title>
+  <meta name="description" content="Data science student at York University and campus equipment assistant at Tait McKenzie Gym.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="#home" class="logo">Ayokunmi Lawal</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-      <nav id="primary-nav" class="nav-menu">
-        <ul class="nav-list">
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+    <div class="page header-row">
+      <a class="brand" href="#home">Ayokunmi Lawal</a>
+      <nav class="site-nav" aria-label="Sections">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section id="home" class="hero-section">
-      <div class="container hero-content">
-        <span class="badge">Data Science &amp; Machine Learning</span>
-        <h1 class="hero-title">Ayokunmi Lawal</h1>
-        <p class="hero-lead">
-          Studying data science at York University and campus equipment assistant at Tait McKenzie Gym. Confident, jovial, and an avid lover of learning.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">Explore Projects</a>
-          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-        </div>
+  <main class="page">
+    <section class="hero" id="home" aria-labelledby="home-title">
+      <span class="hero-bar" aria-hidden="true"></span>
+      <h1 id="home-title" class="hero-name">Ayokunmi Lawal</h1>
+      <p class="hero-intro">Studying data science at York University and campus equipment assistant at Tait McKenzie Gym, integrating technology for sports equipment maintenance.</p>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <p class="sec-num" aria-hidden="true">01</p>
+      <h2 id="about-title" class="sec-title">About</h2>
+      <div class="sec-body">
+        <p>I am studying data science and work as a student on campus at York University with Tait McKenzie Gym as an equipment assistant, integrating technology for the maintenance of jerseys and sporting equipment @ YorkU in Vaughan.</p>
+        <p>I built this portfolio for recruiters and employers to explore the things I have built, showing both the practical systems and my readiness to discuss them in depth.</p>
       </div>
     </section>
 
-    <section id="about" class="about-section">
-      <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-card">
-          <p>
-            I am studying data science and work as a student on campus at York University with Tait McKenzie Gym as an equipment assistant, integrating technology for the maintenance of jerseys and sporting equipment @ YorkU in Vaughan.
-          </p>
-          <p>
-            I built this portfolio for recruiters and employers to explore the data pipelines, machine learning models, and analytics tools I build, and to show that I understand the core mechanics and can discuss every technical decision.
-          </p>
-        </div>
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <p class="sec-num" aria-hidden="true">02</p>
+      <h2 id="projects-title" class="sec-title">Projects</h2>
+      <div class="sec-body">
+        <ul class="project-list">
+          <li class="project-row">
+            <h3 class="project-title">Football Player Undervaluation Model with RAG Scouting Assistant</h3>
+            <p class="project-desc">Built an end-to-end football analytics and machine learning system that identifies potentially undervalued players moving between European leagues. Uses Python, PyTorch, scikit-learn and PostgreSQL to predict player development, alongside a retrieval-augmented generation (RAG) assistant that allows scouts to query player statistics and scouting reports with cited sources. Achieved 90% accuracy on a held-out assistant evaluation.</p>
+            <a class="project-link" href="https://github.com/ayokumo/player_undervaluation_model" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </li>
+          <li class="project-row">
+            <h3 class="project-title">Premier League Match Prediction Pipeline</h3>
+            <p class="project-desc">Developed an automated machine learning pipeline that collects and processes football data, engineers team performance features using PySpark, and predicts upcoming Premier League match outcomes. Uses historical seasons for model training and evaluation, with GitHub Actions automating daily updates, scheduled predictions and weekly model retraining. Publishes predictions through a live dashboard.</p>
+            <a class="project-link" href="https://github.com/ayokumo/pl-predictor" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </li>
+          <li class="project-row">
+            <h3 class="project-title">Toronto Housing and Shelter Forecasting Pipeline</h3>
+            <p class="project-desc">Built an end-to-end data engineering and forecasting project combining public Toronto shelter occupancy data with Bank of Canada interest rate data. Developed a 433,000-row data warehouse using dbt and DuckDB, implemented automated data quality tests, and applied statistical modelling and time-series forecasting to investigate relationships between interest rates and shelter demand.</p>
+            <a class="project-link" href="https://github.com/ayokumo/toronto-housing-project" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <section id="projects" class="projects-section">
-      <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-          <article class="project-card">
-            <div class="project-header">
-              <span class="project-number">01</span>
-              <h3 class="project-title">Football Player Undervaluation Model with RAG Scouting Assistant</h3>
-            </div>
-            <p class="project-description">
-              Built an end-to-end football analytics and machine learning system that identifies potentially undervalued players moving between European leagues. Uses Python, PyTorch, scikit-learn and PostgreSQL to predict player development, alongside a retrieval-augmented generation (RAG) assistant that allows scouts to query player statistics and scouting reports with cited sources. Achieved 90% accuracy on a held-out assistant evaluation.
-            </p>
-            <div class="project-footer">
-              <a href="https://github.com/ayokumo/player_undervaluation_model" class="project-link" target="_blank" rel="noopener noreferrer">
-                View Project on GitHub &rarr;
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-header">
-              <span class="project-number">02</span>
-              <h3 class="project-title">Premier League Match Prediction Pipeline</h3>
-            </div>
-            <p class="project-description">
-              Developed an automated machine learning pipeline that collects and processes football data, engineers team performance features using PySpark, and predicts upcoming Premier League match outcomes. Uses historical seasons for model training and evaluation, with GitHub Actions automating daily updates, scheduled predictions and weekly model retraining. Publishes predictions through a live dashboard.
-            </p>
-            <div class="project-footer">
-              <a href="https://github.com/ayokumo/pl-predictor" class="project-link" target="_blank" rel="noopener noreferrer">
-                View Project on GitHub &rarr;
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-header">
-              <span class="project-number">03</span>
-              <h3 class="project-title">Toronto Housing and Shelter Forecasting Pipeline</h3>
-            </div>
-            <p class="project-description">
-              Built an end-to-end data engineering and forecasting project combining public Toronto shelter occupancy data with Bank of Canada interest rate data. Developed a 433,000-row data warehouse using dbt and DuckDB, implemented automated data quality tests, and applied statistical modelling and time-series forecasting to investigate relationships between interest rates and shelter demand.
-            </p>
-            <div class="project-footer">
-              <a href="https://github.com/ayokumo/toronto-housing-project" class="project-link" target="_blank" rel="noopener noreferrer">
-                View Project on GitHub &rarr;
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="skills-section">
-      <div class="container">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3 class="skill-category-title">Programming Languages</h3>
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <p class="sec-num" aria-hidden="true">03</p>
+      <h2 id="skills-title" class="sec-title">Skills</h2>
+      <div class="sec-body">
+        <div class="skills-categories">
+          <div class="skill-group">
+            <h3 class="skill-group-title">Programming Languages</h3>
             <p class="skill-items">Python, SQL, R</p>
           </div>
-
-          <div class="skill-category">
-            <h3 class="skill-category-title">Machine Learning &amp; Data Science</h3>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Machine Learning &amp; Data Science</h3>
             <p class="skill-items">PyTorch, scikit-learn, pandas, NumPy, feature engineering, model evaluation, cross-validation, predictive modelling, statistical analysis, time-series forecasting</p>
           </div>
-
-          <div class="skill-category">
-            <h3 class="skill-category-title">Generative AI &amp; LLMs</h3>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Generative AI &amp; LLMs</h3>
             <p class="skill-items">LangChain, LangGraph, Retrieval-Augmented Generation (RAG), prompt engineering, LLM evaluation, computer vision</p>
           </div>
-
-          <div class="skill-category">
-            <h3 class="skill-category-title">Data Engineering</h3>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Data Engineering</h3>
             <p class="skill-items">PySpark, dbt Core, DuckDB, PostgreSQL, data pipelines, data warehousing, automated data quality testing</p>
           </div>
-
-          <div class="skill-category">
-            <h3 class="skill-category-title">Cloud &amp; Development Tools</h3>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Cloud &amp; Development Tools</h3>
             <p class="skill-items">AWS, Docker, Git, GitHub Actions, workflow automation</p>
           </div>
-
-          <div class="skill-category">
-            <h3 class="skill-category-title">Analytics &amp; Visualization</h3>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Analytics &amp; Visualization</h3>
             <p class="skill-items">Power BI, interactive dashboards, geospatial analysis, GeoPandas, PySAL</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="contact-section">
-      <div class="container">
-        <h2 class="section-title">Get in Touch</h2>
-        <div class="contact-card">
-          <p class="contact-intro">
-            I am always interested in discussing data science challenges, machine learning pipelines, or new collaborative opportunities.
-          </p>
-          <div class="contact-links">
-            <a href="https://github.com/ayokumo" class="contact-link" target="_blank" rel="noopener noreferrer">
-              GitHub Profile (ayokumo)
-            </a>
-            <a href="https://www.linkedin.com/in/ayokunmi-lawal-6b9a14290" class="contact-link" target="_blank" rel="noopener noreferrer">
-              LinkedIn Profile
-            </a>
-          </div>
-        </div>
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <p class="sec-num" aria-hidden="true">04</p>
+      <h2 id="contact-title" class="sec-title">Contact</h2>
+      <div class="sec-body">
+        <ul class="contact-list">
+          <li><a href="https://github.com/ayokumo" target="_blank" rel="noopener noreferrer">GitHub (ayokumo)</a></li>
+          <li><a href="https://www.linkedin.com/in/ayokunmi-lawal-6b9a14290" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
       </div>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <p>&copy; 2026 Ayokunmi Lawal. Built with semantic HTML, CSS, and JavaScript.</p>
-    </div>
-  </footer>
 </body>
 </html>
